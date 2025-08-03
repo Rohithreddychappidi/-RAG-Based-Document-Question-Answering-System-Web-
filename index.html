@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RAG PDF QA</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <h2>📄 Upload a PDF</h2>
+  <input type="file" id="pdfInput" />
+  <button onclick="uploadPDF()">Upload</button>
+
+  <h2>❓ Ask a Question</h2>
+  <input type="text" id="questionInput" placeholder="Type your question here..." />
+  <button onclick="askQuestion()">Ask</button>
+
+  <h2>🧠 Answer:</h2>
+  <div id="answerBox">Waiting for input...</div>
+
+  <script>
+    let uploadedPDFPath = "";
+
+    async function uploadPDF() {
+      const input = document.getElementById("pdfInput");
+      const formData = new FormData();
+      formData.append("pdf", input.files[0]);
+
+      const response = await fetch("/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+      uploadedPDFPath = data.pdf_path;
+      alert("✅ PDF uploaded successfully!");
+    }
+
+    async function askQuestion() {
+      const question = document.getElementById("questionInput").value;
+
+      const response = await fetch("/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          pdf_path: uploadedPDFPath,
+          question: question
+        })
+      });
+
+      const data = await response.json();
+      document.getElementById("answerBox").innerText = data.answer || data.error;
+    }
+  </script>
+</body>
+</html>
