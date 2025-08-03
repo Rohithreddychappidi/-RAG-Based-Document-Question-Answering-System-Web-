@@ -3,7 +3,7 @@ This project is a lightweight Retrieval-Augmented Generation (RAG) pipeline buil
 # 🧠 RAG-Based Document Question Answering System
 
 This project is a lightweight Retrieval-Augmented Generation (RAG) pipeline built with **Python**, **Flask**, **FAISS**, **LLM (OpenAI/Ollama)**, and **Docker**. Upload a PDF and ask questions — the app fetches relevant document chunks and answers using an LLM.
-
+![image alt](https://github.com/Rohithreddychappidi/-RAG-Based-Document-Question-Answering-System-Web-/blob/e4fd3ded48b787ab9e37b6ceff34edce24666cc8/ChatGPT%20Image%20Aug%203%2C%202025%2C%2003_23_27%20PM.png)
 ---
 
 ## 🚀 Features
